@@ -1,0 +1,53 @@
+.node {
+	min-width: 750px;
+	margin: 15px 0;
+	position: relative;
+
+	&-title {
+		display: flex;
+		align-items: center;
+	}
+
+	&-name {
+		max-width: fit-content; 
+		text-align: left;
+		cursor: pointer;
+		filter: blur(var(--blur));
+	}
+
+	&-children {
+		height: 0px;
+		overflow: hidden;
+		padding-left: 75px;
+
+		&.dropped {
+			height: fit-content;
+			overflow: unset;
+		}
+	}
+}
+
+.dash-line {
+	min-width: 500px;
+	flex: 1;
+	margin-left: 30px;
+	border: 1px dashed var(--font-color);
+	filter: blur(var(--blur));
+}
+
+.node.active {
+	z-index: var(--z-hight-layer);
+
+	.node-name {
+		filter: none;
+	}
+
+	&::after,
+	.node::after {
+		filter: none;
+	}
+
+	.dash-line {
+		filter: none;
+	}
+}

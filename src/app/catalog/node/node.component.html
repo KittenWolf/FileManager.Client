@@ -1,0 +1,11 @@
+<div class="node" [class]="{'active': isActive}">
+	<div class="node-title" (click)="setThisNodeActive()">
+		<span class="node-name">{{ truncate(nodeData.name) }}</span>
+		<div class="dash-line"></div>
+	</div>
+	<div class="node-children" [class]="{'dropped': isDropped}">
+		@for (childNode of nodeData.children; track childNode) {
+		<app-catalog-node [parentNodeComponent]="this" [nodeData]="childNode"></app-catalog-node>
+		}
+	</div>
+</div>

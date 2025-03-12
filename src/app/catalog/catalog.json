@@ -1,0 +1,104 @@
+{
+	"name": "Main node",
+	"nesting": 0,
+	"size": "44 KB",
+	"date": "06.03.2025",
+	"children": [
+		{
+			"name": "Sub directory",
+			"nesting": 1,
+			"size": "44 KB",
+			"date": "06.03.2025",
+			"children": [
+				{
+					"name": "Sub sub directory",
+					"nesting": 2,
+					"size": "44 KB",
+					"date": "06.03.2025",
+					"children": [
+						{
+							"name": "Text file",
+							"nesting": 3,
+							"size": "23 KB",
+							"fileType": "Text",
+							"date": "06.03.2025"
+						},
+						{
+							"name": "CSharp file",
+							"nesting": 3,
+							"size": "15 KB",
+							"fileType": ".cs",
+							"date": "04.03.2025"
+						},
+						{
+							"name": "Json file",
+							"nesting": 3,
+							"size": "44 KB",
+							"fileType": ".json",
+							"date": "05.03.2025"
+						}
+					]
+				},
+				{
+					"name": "Sub sub directory",
+					"nesting": 2,
+					"size": "44 KB",
+					"date": "06.03.2025",
+					"children": [
+						{
+							"name": "Sub sub directory",
+							"nesting": 3,
+							"size": "44 KB",
+							"date": "06.03.2025",
+							"children": [
+								{
+									"name": "Text file",
+									"nesting": 4,
+									"size": "24 KB",
+									"fileType": "Text",
+									"date": "06.03.2025"
+								},
+								{
+									"name": "CSharp file",
+									"nesting": 4,
+									"size": "15 KB",
+									"fileType": ".cs",
+									"date": "04.03.2025"
+								},
+								{
+									"name": "Json file",
+									"nesting": 4,
+									"size": "44 KB",
+									"fileType": ".json",
+									"date": "05.03.2025"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sub directory",
+			"nesting": 1,
+			"size": "44 KB",
+			"date": "06.03.2025",
+			"children": [
+				{
+					"name": "Sub sub directory",
+					"nesting": 2,
+					"size": "44 KB",
+					"date": "06.03.2025",
+					"children": []
+				},
+				{
+					"name": "Sub sub directory",
+					"nesting": 2,
+					"size": "44 KB",
+					"date": "06.03.2025",
+					"children": []
+				}
+			]
+		}
+	]
+}

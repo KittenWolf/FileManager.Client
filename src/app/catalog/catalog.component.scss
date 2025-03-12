@@ -1,0 +1,23 @@
+.catalog {
+	min-width: 100%;
+	max-width: fit-content;
+	min-height: 100%;
+	max-height: fit-content;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+}
+
+.faded {
+	width: 105%;
+	height: 105%;
+	margin: -5px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: radial-gradient(at left, transparent, var(--background-color) 60%);
+	z-index: var(--z-middle-layer);
+}

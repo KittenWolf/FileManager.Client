@@ -1,0 +1,21 @@
+.file-info {
+	height: 50px;
+	padding: 15px 10%;
+	background: var(--background-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: var(--z-hight-layer);
+}
+
+.file-param {
+	margin: 0 30px;
+	
+	span {
+		margin-left: 15px;
+	}
+}

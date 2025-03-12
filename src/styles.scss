@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+	--background-color: #1c1c1c;
+	--font-color: #e9e9e9;
+	--accent: #3a96ff;
+
+	--z-top-layer: 15;
+	--z-hight-layer: 10;
+	--z-middle-layer: 5;
+	--z-low-layer: 1;
+
+	--blur: 1.5px;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: var(--background-color);
+	color: var(--font-color);
+	font-family: "Comfortaa", sans-serif;
+	font-size: 20px;
+	overflow-x: hidden;
+}
+
+a {
+	color: var(--font-color);
+	outline: none;
+	text-decoration: none;
+}
+
+svg {
+	color: var(--font-color);
+}
+
+.btn {
+	background: transparent;
+	border: 1px solid transparent;
+	outline: none;
+	cursor: pointer;
+
+	&.disabled {
+		opacity: .25;
+		cursor: default;
+	}
+}
+
+.btn-icon {
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+}
