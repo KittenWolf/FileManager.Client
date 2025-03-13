@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CatalogNodeData } from "../types";
-import { NodeHandlerService } from "../../services/nodeUpdateService";
+import { NodeHandlerService } from "../../services/nodeHandlerService";
 
 @Component({
 	selector: 'app-fileInfo',

@@ -1,8 +1,14 @@
 export interface CatalogNodeData {
 	name: string;
-	nesting: number;
+	bytes: bigint;
 	size: string;
 	date: string;
 	type?: string;
 	children?: CatalogNodeData[];
+}
+
+export enum NodeSortType {
+	byName,
+	byDate,
+	bySize
 }

@@ -13,6 +13,14 @@
 		text-align: left;
 		cursor: pointer;
 		filter: blur(var(--blur));
+		
+		&:hover {
+			color: var(--accent);
+
+			& + .dash-line {
+				border-color: var(--accent);
+			}
+		}
 	}
 
 	&-children {

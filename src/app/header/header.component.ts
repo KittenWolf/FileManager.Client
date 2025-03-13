@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { NodeHandlerService } from "../services/nodeUpdateService";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
+import { NodeHandlerService } from "../services/nodeHandlerService";
 import { NodeComponent } from "../catalog/node/node.component";
-import { CatalogNodeData } from "../catalog/types";
+import { CatalogNodeData, NodeSortType } from "../catalog/types";
+import { Subscription } from "rxjs";
 
 @Component({
 	selector: 'app-header',
@@ -10,34 +11,73 @@ import { CatalogNodeData } from "../catalog/types";
 	styleUrl: './header.component.scss',
 })
 
-export class HeaderComponent {
-	public activeNodeComponent!: NodeComponent;
+export class HeaderComponent implements OnInit, OnDestroy {
+	private _subsription: Subscription | undefined;
 	
+	public activeSortType: NodeSortType = NodeSortType.byName;
+	public activeNodeComponent!: NodeComponent;
+
 	@Input()
 	public data: CatalogNodeData | null = null;
-
-	@Output()
-	public onSortEvent = new EventEmitter();
-
-	@Output()
-	public onSearchEvent = new EventEmitter();
 
 	@Output()
 	public onResetEvent = new EventEmitter();
 
 	constructor(private readonly _nodeHandlerService: NodeHandlerService) {
-		this._nodeHandlerService.activeNodeComponent$.subscribe((node) => this.activeNodeComponent = node);
+	}
+
+	public ngOnInit(): void {
+		document.addEventListener('keydown', (e) => {
+			if (e.code == 'KeyS') {
+				this.sort();
+			}
+
+			if (e.code == 'KeyQ') {
+				this.setParentNodeActive();
+			}
+
+			if (e.code == 'KeyR') {
+				this.reset();
+			}
+
+			if (e.code == 'KeyC') {
+				this.changeSortType();
+			}
+		});
+
+		this._subsription = this._nodeHandlerService.activeNodeComponent$.subscribe((node) => this.activeNodeComponent = node);
+	}
+
+	public ngOnDestroy(): void {
+		this._subsription?.unsubscribe();
+	}
+
+	public setParentNodeActive(): void {
+		this.activeNodeComponent.setParentNodeActive();
 	}
 
 	public sort(): void {
-		this.onSortEvent.emit();
+		this.activeNodeComponent.sortChildren(this.activeSortType);
 	}
 
 	public search(regEx: string): void {
-		this.onSearchEvent.emit(regEx);
+		// TODO: Made search by regular expressions.
 	}
 
 	public reset(): void {
 		this.onResetEvent.emit();
+	}
+
+	public changeSortType() {
+		const values: number[] = Object.values(NodeSortType).filter(v => typeof v == "number");
+		const length: number = values.length;
+		const nextValue: number = this.activeSortType + 1;
+		
+		if (nextValue > length - 1) {
+			this.activeSortType = values[0];
+		}
+		else {
+			this.activeSortType = values[nextValue];
+		}		
 	}
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { CatalogNodeData } from "../types";
-import { NodeHandlerService } from "../../services/nodeUpdateService";
+import { CatalogNodeData, NodeSortType } from "../types";
+import { NodeHandlerService } from "../../services/nodeHandlerService";
 
 @Component({
 	selector: 'app-catalog-node',
@@ -10,7 +10,7 @@ import { NodeHandlerService } from "../../services/nodeUpdateService";
 })
 
 export class NodeComponent implements OnInit {
-	private readonly maxNameLength: number = 20;
+	private readonly _maxNameLength: number = 20;
 
 	@Input()
 	public parentNodeComponent?: NodeComponent;
@@ -24,7 +24,7 @@ export class NodeComponent implements OnInit {
 	@Input()
 	public isDropped: boolean = false;
 
-	constructor(private readonly _nodeUpdateService: NodeHandlerService) {
+	constructor(private readonly _nodeHandlerService: NodeHandlerService) {
 	}
 
 	public ngOnInit(): void {
@@ -39,7 +39,7 @@ export class NodeComponent implements OnInit {
 
 		this.isDropped = !this.isDropped;
 
-		this._nodeUpdateService.setActiveNodeComponent(this);
+		this._nodeHandlerService.setActiveNodeComponent(this);
 	}
 
 	public setParentNodeActive(): void {
@@ -51,10 +51,24 @@ export class NodeComponent implements OnInit {
 		this.removeActive();
 		this.parentNodeComponent.setActive();
 
-		this._nodeUpdateService.setActiveNodeComponent(this.parentNodeComponent);
+		this._nodeHandlerService.setActiveNodeComponent(this.parentNodeComponent);
 	}
 
-	public truncate(str: string, limit: number = this.maxNameLength): string {
+	public sortChildren(sortType: NodeSortType) {
+		switch (sortType) {
+			case NodeSortType.byName:
+				this.nodeData.children?.sort(this.sortByName);
+				break;
+			case NodeSortType.byDate:
+				this.nodeData.children?.sort(this.sortByDate);
+				break;
+			case NodeSortType.bySize:
+				this.nodeData.children?.sort(this.sortBySize);
+				break;
+		}
+	}
+
+	public truncate(str: string, limit: number = this._maxNameLength): string {
 		return str.length > limit ? str.substring(0, limit) + '...' : str;
 	}
 
@@ -68,5 +82,33 @@ export class NodeComponent implements OnInit {
 
 	private rollUp(): void {
 		this.isDropped = false;
+	}
+
+	private sortByName(a: CatalogNodeData, b: CatalogNodeData): number {
+		if (a.name < b.name) {
+			return -1;
+		}
+
+		if (a.name > b.name) {
+			return 1;
+		}
+
+		return 0;
+	}
+
+	private sortByDate(a: CatalogNodeData, b: CatalogNodeData): number {
+		return new Date(a.date).getTime() - new Date(b.date).getTime();
+	}
+
+	private sortBySize(a: CatalogNodeData, b: CatalogNodeData): number {
+		if (a.bytes < b.bytes) {
+			return -1;
+		}
+
+		if (a.bytes > b.bytes) {
+			return 1;
+		}
+
+		return 0;
 	}
 }

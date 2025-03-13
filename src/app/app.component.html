@@ -1,8 +1,5 @@
 <main>
-	<app-header [data]="data" 
-		(onSortEvent)="onSortEvent()" 
-		(onSearchEvent)="onSearchEvent()"
-		(onResetEvent)="onResetEvent()">
+	<app-header [data]="data" (onResetEvent)="onResetEvent()">
 	</app-header>
 
 	@if (data) {

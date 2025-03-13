@@ -13,13 +13,11 @@ import { CatalogNodeData } from './catalog/types';
 })
 
 export class AppComponent implements OnInit {
-	public title = 'FileManager';
-	
 	public data: CatalogNodeData | null = null;
 
 	public ngOnInit(): void {
 		const savedData = localStorage.getItem("catalog");
-		
+
 		if (savedData) {
 			this.data = JSON.parse(savedData);
 		}
@@ -30,16 +28,9 @@ export class AppComponent implements OnInit {
 		this.data = data;
 	}
 
-	public onSortEvent(): void {
-
-	}
-
-	public onSearchEvent(): void {
-
-	}
-
 	public onResetEvent(): void {
-		localStorage.clear();
 		this.data = null;
+		localStorage.clear();
+		window.location.reload();
 	}
 }

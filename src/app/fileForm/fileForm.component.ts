@@ -14,6 +14,7 @@ export class FileFormComponent implements OnInit, OnDestroy {
 
 	@Output()
 	public onLoadData = new EventEmitter<CatalogNodeData>();
+	sharedObservable: any;
 
 	constructor(private readonly _httpDataService: HttpDataService) {
 	}
@@ -25,7 +26,7 @@ export class FileFormComponent implements OnInit, OnDestroy {
 		this._subscription?.unsubscribe();
 	}
 
-	public loadData(event: any): void {
+	public async loadData(event: any): Promise<void> {		
 		var formData = new FormData();
 		var selectedFile = event.target.files[0];
 
@@ -37,8 +38,8 @@ export class FileFormComponent implements OnInit, OnDestroy {
 
 		var onServerResponse = this.onServerResponse.bind(this);
 		var onServerException = this.onServerException.bind(this);
-
-		this._subscription = this._httpDataService.getData(formData).subscribe({
+		
+		this._httpDataService.getData(formData).subscribe({
 			next(response) {
 				onServerResponse(response);
 			},
