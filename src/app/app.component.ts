@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./header/header.component";
-import { CatalogComponent } from "./catalog/catalog.component";
-import { FileFormComponent } from './fileForm/fileForm.component';
-import { CatalogNodeData } from './catalog/types';
+import { CatalogComponent } from "./components/catalog/catalog.component";
+import { FileFormComponent } from './components/fileForm/fileForm.component';
+import { CatalogNodeData } from './components/catalog/types';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
 	selector: 'app-root',

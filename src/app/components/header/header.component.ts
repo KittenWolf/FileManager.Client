@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
-import { NodeHandlerService } from "../services/nodeHandlerService";
 import { NodeComponent } from "../catalog/node/node.component";
 import { CatalogNodeData, NodeSortType } from "../catalog/types";
 import { Subscription } from "rxjs";
+import { NodeHandlerService } from "../services/nodeHandlerService";
 
 @Component({
 	selector: 'app-header',

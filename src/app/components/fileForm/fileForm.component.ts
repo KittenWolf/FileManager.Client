@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
 import { CatalogNodeData } from "../catalog/types";
-import { HttpDataService } from "../services/httpDataService";
 import { Subscription } from "rxjs";
+import { HttpDataService } from "../services/httpDataService";
 
 @Component({
 	selector: 'app-fileForm',
